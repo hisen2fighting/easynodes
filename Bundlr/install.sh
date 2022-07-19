@@ -6,7 +6,7 @@ do
 
 # Menu
 
-PS3='Select an action: '
+PS3='选择操作: '
 options=("安装节点" "获取测试币" "运行Docker" "查看日志" "查看钱包余额" "运行验证人" "退出")
 select opt in "${options[@]}"
                do
