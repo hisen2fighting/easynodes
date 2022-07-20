@@ -7,7 +7,7 @@ do
 # Menu
 
 PS3='选择操作: '
-options=("安装节点" "获取测试币" "运行Docker" "查看日志" "查看钱包余额" "运行验证人" "退出")
+options=("安装节点" "获取测试币" "运行Docker" "查看日志" "查看钱包余额" "运行验证人" "查看验证人状态" "退出")
 select opt in "${options[@]}"
                do
                    case $opt in                           
@@ -162,6 +162,14 @@ break
 
 cd $HOME/bundlr/validator-rust && \
 testnet-cli balance $ADDRESS
+
+break
+;;
+
+"查看验证人状态")
+
+cd $HOME/bundlr/validator-rust && \
+testnet-cli check RkinCLBlY4L5GZFv8gCFcrygTyd5Xm91CzKlR6qxhKA $ADDRESS
 
 break
 ;;
