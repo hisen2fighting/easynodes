@@ -3,6 +3,12 @@
 while true
 do
 
+# Logo
+
+echo "============================================================"
+curl -s https://raw.githubusercontent.com/ericet/easynodes/master/logo.sh | bash
+echo "============================================================"
+
 source ~/.bash_profile
 
 PS3='选择一个操作 '

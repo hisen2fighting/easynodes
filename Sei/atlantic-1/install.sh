@@ -3,6 +3,13 @@
 while true
 do
 
+# Logo
+
+echo "============================================================"
+curl -s https://raw.githubusercontent.com/ericet/easynodes/master/logo.sh | bash
+echo "============================================================"
+
+
 source ~/.bash_profile
 
 PS3='选择一个操作 '
@@ -16,7 +23,6 @@ options=(
 "钱包余额" 
 "创建验证人" 
 "查看验证人"
-"删除节点"
 "退出")
 select opt in "${options[@]}"
                do
