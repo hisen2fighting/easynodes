@@ -24,6 +24,7 @@ S3='Select an action: '
 options=(
 "设置自动复利" 
 "开启自动复利"
+"查看自动复利日志"
 "退出")
 select opt in "${options[@]}"
                do
@@ -88,8 +89,14 @@ break
 echo "============================================================"
 echo "自动复利开启。。。"
 echo "============================================================"
-apt install screen
-screen -S AutoDelegate
+cd $HOME/autodelegate && ./start.sh > autodelegate.log 2>&1 &
+echo "日志保存在 ~/autodelegate/autodelegate.log"
+
+break
+;;
+
+"查看自动复利日志")
+tail -f $HOME/autodelegate/autodelegate.log
 
 break
 ;;
