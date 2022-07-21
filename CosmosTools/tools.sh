@@ -72,7 +72,7 @@ echo export DEL_ADDR=${DEL_ADDR} >> $HOME/.bash_profile
 echo "============================================================"
 echo "设置自动复利间隔时间(秒) 比如： 1800 代表每30分钟自动复利"
 echo "============================================================"
-DELAY=$($PROJECT keys show $WALLETNAME --bech acc -a)
+read DELAY
 echo export DELAY=${DELAY} >> $HOME/.bash_profile
 
 source $HOME/.bash_profile
