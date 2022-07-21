@@ -86,7 +86,7 @@ echo "============================================================"
 
 git clone https://github.com/sei-protocol/sei-chain.git
 cd sei-chain
-git checkout 1.0.6beta
+git checkout 1.0.6beta-val-count-fix
 make install
 
 seid init $SEINODE --chain-id $SEICHAIN
