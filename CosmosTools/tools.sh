@@ -152,7 +152,9 @@ break
 echo "============================================================"
 echo "机器人运行。。。"
 echo "============================================================"
-echo "添加: */1 * * * *  /bin/bash $HOME/alerts/alerts.sh"
+echo "*/1 * * * *  /bin/bash $HOME/alerts/alerts.sh"
+echo "复制上面命令后按回车，粘贴设置定时运行程序"
+read
 crontab -e
 
 break
