@@ -17,7 +17,7 @@ for (( timer=12; timer>0; timer-- ))
 BAL=$($PROJECT q bank balances ${DEL_ADDR} -o json | jq -r '.balances | .[].amount')
         BAL=$(($BAL- 500))
 echo -e "余额: ${GREEN_COLOR}${BAL}${WITHOU_COLOR} ${DENOM}\n"
-        echo -e "Stake ALL\n"
+        echo -e "质押全部\n"
 if (( BAL > 500 )); then
             echo -e "${PWDDD}\n${PWDDD}\n" | $PROJECT tx staking delegate ${VAL_ADDR} ${BAL}${DENOM} --from ${DEL_ADDR} --chain-id ${CHAIN_ID} --fees ${FEES}${DENOM} -y
         else
