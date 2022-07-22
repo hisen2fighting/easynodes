@@ -14,13 +14,13 @@ echo "============================================================"
 PS3='选择一个操作 '
 options=(
 "自动复利" 
+"节点状态提醒"
 "退出")
 select opt in "${options[@]}"
                do
-                   case $opt in
-                   
+                   case $opt in                   
 "自动复利")
-S3='Select an action: '
+PS3='Select an action: '
 options=(
 "设置自动复利" 
 "开启自动复利"
@@ -111,6 +111,57 @@ done
 
 break
 ;;
+
+"节点状态提醒")
+PS3='选择一个操作: '
+options=(
+"设置电报机器人" 
+"运行机器人"
+"退出")
+select opt in "${options[@]}"
+               do
+                   case $opt in
+                   
+"设置电报机器人")
+echo "============================================================"
+echo "输入电报API Token"
+echo "============================================================"
+read TG_API
+echo export TG_API=${TG_API} >> $HOME/.bash_profile
+echo "============================================================"
+echo "输入电报Chat ID"
+echo "============================================================"
+read TG_ID
+echo export TG_ID=${TG_ID} >> $HOME/.bash_profile
+source $HOME/.bash_profile
+
+mkdir $HOME/alerts
+wget -O $HOME/alerts/alerts.sh https://raw.githubusercontent.com/ericet/easynodes/master/CosmosTools/alerts.sh
+chmod +x $HOME/alerts/alerts.sh
+break
+;;
+            
+"运行机器人")
+echo "============================================================"
+echo "机器人运行。。。"
+echo "============================================================"
+echo "添加: */1 * * * *  /bin/bash $HOME/alerts/alerts.sh"
+crontab -e
+
+break
+;;
+
+"Exit")
+exit
+;;
+
+*) echo "invalid option $REPLY";;
+esac
+done
+
+break
+;;
+
  
 "退出")
 exit
