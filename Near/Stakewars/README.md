@@ -2,7 +2,7 @@ NEAR测试网跑验证人节点的任务，总共9个任务, 时间从7/13 到9/
 
 任务：https://github.com/near/stakewars-iii/tree/main/challenges
 
-任务表格(4-8): https://docs.google.com/forms/d/e/1FAIpQLScp9JEtpk1Fe2P9XMaS9Gl6kl9gcGVEp3A5vPdEgxkHx3ABjg/viewform
+任务表格(5-8): https://docs.google.com/forms/d/e/1FAIpQLScp9JEtpk1Fe2P9XMaS9Gl6kl9gcGVEp3A5vPdEgxkHx3ABjg/viewform
 
 项目介绍：https://near.org/stakewars/
 
