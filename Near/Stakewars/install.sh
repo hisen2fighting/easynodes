@@ -180,20 +180,20 @@ while true; do
   fi
 done
 near call factory.shardnet.near create_staking_pool '{"staking_pool_id": "'${poolName}'", "owner_id": "'${name}'", "stake_public_key": "'${publicKey}'", "reward_fee_fraction": {"numerator": '${poolCommission}', "denominator": 100}, "code_hash":"DD428g9eqLL8fWUxv8QSpVFzyHi1Qd16P8ephYCTmMSZ"}' --accountId="${name}" --amount=$nearBalance --gas=300000000000000
-mkdir /home/logs
 mkdir /home/${name}
+mkdir /home/${name}/logs
 mkdir /home/${name}/scripts
-echo '#!/bin/sh
+echo '#!/bin/bash
 # Ping call to renew Proposal added to crontab
 source ~/.profile
 echo "---" >> /home/$NAME/logs/all.log
 date >> /home/$NAME/logs/all.log
-near call '$POOLNAME'.factory.shardnet.near ping '{}' --accountId '${name}' --gas=300000000000000 >> /home/$NAME/logs/all.log
+near call '$POOLNAME'.factory.shardnet.near ping '{}' --accountId '$NAME' --gas=300000000000000 >> /home/$NAME/logs/all.log
 near proposals | grep '$POOLNAME' >> /home/$NAME/logs/all.log
 near validators current | grep '$POOLNAME' >> /home/$NAME/logs/all.log
 near validators next | grep '$POOLNAME' >> /home/$NAME/logs/all.log' > /home/$NAME/scripts/ping.sh
 crontab -l > mycron
-echo "*/5 * * * * sh /home/${name}/scripts/ping.sh" >> mycron
+echo "*/5 * * * * bash /home/${name}/scripts/ping.sh" >> mycron
 crontab mycron
 rm mycron
 break
