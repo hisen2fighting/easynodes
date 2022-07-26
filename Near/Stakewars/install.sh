@@ -51,7 +51,6 @@ break
 ;;
 
 "安装节点")
-source $HOME/.bashrc
 git clone https://github.com/near/nearcore
 cd nearcore
 git fetch
@@ -69,6 +68,7 @@ break
 
 
 "设置节点")
+export NEAR_ENV=shardnet
 source $HOME/.bashrc
 echo "============================================================"
 echo "复制下面链接，然后在浏览器打开。创建或者导入已创建的钱包，然后授权。"
