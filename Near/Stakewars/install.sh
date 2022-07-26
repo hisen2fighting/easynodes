@@ -3,7 +3,7 @@ while true
 do
 
 # Logo
-source $HOME/.bashrc
+source $HOME/.profile
 
 echo "============================================================"
 curl -s https://raw.githubusercontent.com/ericet/easynodes/master/logo.sh | bash
@@ -40,13 +40,13 @@ sudo apt install build-essential nodejs -y
 PATH="$PATH"
 sudo apt install python3-pip -y
 USER_BASE_BIN=$(python3 -m site --user-base)/bin
-echo export PATH="$USER_BASE_BIN:$PATH" >> $HOME/.bashrc
+echo export PATH="$USER_BASE_BIN:$PATH" >> $HOME/.profile
 sudo apt install clang build-essential make
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 source $HOME/.cargo/env
 sudo npm install -g near-cli
-echo 'export NEAR_ENV=shardnet' >> $HOME/.bashrc
-source $HOME/.bashrc
+echo 'export NEAR_ENV=shardnet' >> $HOME/.profile
+source $HOME/.profile
 break
 ;;
 
@@ -69,7 +69,7 @@ break
 
 "设置节点")
 export NEAR_ENV=shardnet
-source $HOME/.bashrc
+source $HOME/.profile
 echo "============================================================"
 echo "复制下面链接，然后在浏览器打开。创建或者导入已创建的钱包，然后授权。"
 echo "============================================================"
@@ -79,7 +79,7 @@ echo "============================================================"
 echo "输入钱包名（比如: xxxx.shardnet.near)"
 echo "============================================================"
 read name
-  echo export NAME=${name} >> $HOME/.bashrc
+  echo export NAME=${name} >> $HOME/.profile
   if [[ ${#name} -gt 14 ]]; then
     near generate-key $name 
     cp ~/.near-credentials/shardnet/$name.json ~/.near/validator_key.json
@@ -150,7 +150,7 @@ while true; do
   echo "输入池子的名字（比如： test123)"
 	echo "============================================================"
 	read poolName
-  echo export POOLNAME=${poolName} >> $HOME/.bashrc
+  echo export POOLNAME=${poolName} >> $HOME/.profile
   if [[ ${#poolName} -gt 0 ]]; then
     break;
   else
@@ -185,14 +185,13 @@ mkdir /home/${name}
 mkdir /home/${name}/scripts
 echo '#!/bin/sh
 # Ping call to renew Proposal added to crontab
-
-export NEAR_ENV=shardnet
-echo "---" >> /home/logs/all.log
-date >> /home/logs/all.log
-near call '${poolName}'.factory.shardnet.near ping '{}' --accountId '${name}' --gas=300000000000000 >> /home/logs/all.log
-near proposals | grep '${poolName}' >> /home/logs/all.log
-near validators current | grep '${poolName}' >> /home/logs/all.log
-near validators next | grep '${poolName}' >> /home/logs/all.log' > /home/${name}/scripts/ping.sh
+source ~/.profile
+echo "---" >> /home/$NAME/logs/all.log
+date >> /home/$NAME/logs/all.log
+near call '$POOLNAME'.factory.shardnet.near ping '{}' --accountId '${name}' --gas=300000000000000 >> /home/$NAME/logs/all.log
+near proposals | grep '$POOLNAME' >> /home/$NAME/logs/all.log
+near validators current | grep '$POOLNAME' >> /home/$NAME/logs/all.log
+near validators next | grep '$POOLNAME' >> /home/$NAME/logs/all.log' > /home/$NAME/scripts/ping.sh
 crontab -l > mycron
 echo "*/5 * * * * sh /home/${name}/scripts/ping.sh" >> mycron
 crontab mycron
@@ -201,7 +200,7 @@ break
 ;;
 
 "查看PING日志")
-source $HOME/.bashrc
+source $HOME/.profile
 tail -f /home/$NAME/logs/all.log
 break
 ;;
