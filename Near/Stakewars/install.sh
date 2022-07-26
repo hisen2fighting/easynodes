@@ -183,6 +183,7 @@ near call factory.shardnet.near create_staking_pool '{"staking_pool_id": "'${poo
 mkdir /home/${name}
 mkdir /home/${name}/logs
 mkdir /home/${name}/scripts
+source ~/.profile
 echo '#!/bin/bash
 # Ping call to renew Proposal added to crontab
 source ~/.profile
