@@ -185,6 +185,8 @@ mkdir /home/${name}
 mkdir /home/${name}/scripts
 echo '#!/bin/sh
 # Ping call to renew Proposal added to crontab
+
+export NEAR_ENV=shardnet
 echo "---" >> /home/logs/all.log
 date >> /home/logs/all.log
 near call '${poolName}'.factory.shardnet.near ping '{}' --accountId '${name}' --gas=300000000000000 >> /home/logs/all.log
