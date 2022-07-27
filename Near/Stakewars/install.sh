@@ -17,6 +17,8 @@ options=(
 "设置节点"
 "查看PING日志"
 "查看节点日志"
+"设置瓜分质押奖励"
+"领取质押奖励"
 "退出")
 select opt in "${options[@]}"
                do
@@ -89,10 +91,10 @@ read name
   fi
 done
 while true; do
-	echo "============================================================"
-	echo "输入Pool ID (比如: xxx.factory.shardnet.near)"
-	echo "============================================================"
-	read factoryName
+        echo "============================================================"
+        echo "输入Pool ID (比如: xxx.factory.shardnet.near)"
+        echo "============================================================"
+        read factoryName
   if [[ ${#factoryName} -gt 22 ]]; then
     break;
   else
@@ -101,10 +103,10 @@ while true; do
 done
 cat ~/.near/validator_key.json | grep public_key
 while true; do
-	echo "============================================================"
+        echo "============================================================"
   echo "输入上面生成的Public Key(ed25519:后面那串)"
-	echo "============================================================"
-	read publicKey
+        echo "============================================================"
+        read publicKey
   if [[ ${#publicKey} -gt 35 ]]; then
     break;
   else
@@ -113,10 +115,10 @@ while true; do
 done
 cat ~/.near/validator_key.json | grep private_key
 while true; do
-	echo "============================================================"
+        echo "============================================================"
   echo "输入上面生成的Private Key(ed25519:后面那串)" 
-	echo "============================================================"
-	read privateKey
+        echo "============================================================"
+        read privateKey
   if [[ ${#privateKey} -gt 35 ]]; then
       echo "{\"account_id\": \"${factoryName}\",\"public_key\": \"${publicKey}\",\"secret_key\": \"${privateKey}\"}" > ~/.near/validator_key.json;
     break;
@@ -146,10 +148,10 @@ sudo systemctl enable neard
 sudo systemctl start neard
 sudo apt install ccze
 while true; do
-	echo "============================================================"
+        echo "============================================================"
   echo "输入池子的名字（比如： test123)"
-	echo "============================================================"
-	read poolName
+        echo "============================================================"
+        read poolName
   echo export POOLNAME=${poolName} >> $HOME/.profile
   if [[ ${#poolName} -gt 0 ]]; then
     break;
@@ -158,10 +160,10 @@ while true; do
   fi
 done
 while true; do
-	echo "============================================================"
+        echo "============================================================"
   echo "输入抽成 (推荐5) " 
-	echo "============================================================"
-	read poolCommission
+        echo "============================================================"
+        read poolCommission
   if [[ ${#poolCommission} -gt 0 ]]; then
     break;
   else
@@ -169,10 +171,10 @@ while true; do
   fi
 done
 while true; do
-	echo "============================================================"
+        echo "============================================================"
   echo "输入质押数量 (最低30 NEAR)" 
-	echo "============================================================"
-	read nearBalance
+        echo "============================================================"
+        read nearBalance
   if [[ ${#nearBalance} -gt 0 ]]; then
     break;
   else
@@ -208,6 +210,31 @@ break
 
 "查看节点日志")
 journalctl -n 100 -f -u neard | ccze -A
+break
+;;
+
+"设置瓜分质押奖励")
+source $HOME/.cargo/env
+source ~/.profile
+rustup target add wasm32-unknown-unknown
+git clone https://github.com/zavodil/near-staking-pool-owner
+cd near-staking-pool-owner/contract
+rustup target add wasm32-unknown-unknown
+cargo build --target wasm32-unknown-unknown --release
+
+NEAR_ENV=shardnet near deploy $NAME --wasmFile target/wasm32-unknown-unknown/release/contract.wasm
+echo "============================================================"
+echo "输入要分享奖励的钱包（如果不知道，就填我的钱包: ericet.shardnet.near）"
+echo "============================================================"
+read receiver
+NEAR_ENV=shardnet near call $NAME new "{\"staking_pool_account_id\": \"$POOLNAME.factory.shardnet.near\", \"owner_id\":\"$NAME\", \"reward_receivers\": [[\"${receiver}\", {\"numerator\": 50, \"denominator\":100}], [\"$NAME\", {\"numerator\": 50, \"denominator\":100}]]}" --accountId $NAME
+break
+;;
+
+"领取质押奖励")
+source ~/.profile
+CONTRACT_ID=$NAME
+NEAR_ENV=shardnet near call $CONTRACT_ID withdraw '{}' --accountId $CONTRACT_ID --gas 200000000000000
 break
 ;;
 
