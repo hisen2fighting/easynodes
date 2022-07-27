@@ -50,7 +50,7 @@ install() {
 		local docker_compose_version=`wget -qO- https://api.github.com/repos/docker/compose/releases/latest | jq -r ".tag_name"`
 		sudo wget -O /usr/bin/docker-compose "https://github.com/docker/compose/releases/download/${docker_compose_version}/docker-compose-`uname -s`-`uname -m`"
 		sudo chmod +x /usr/bin/docker-compose
-		. $HOME/.bash_profile
+		. $HOME/.profile
 	fi
 	if [ "$dive" = "true" ] && ! dpkg -s dive | grep -q "ok installed"; then
 		echo -e "${C_LGn}Dive installation...${RES}"
@@ -132,9 +132,9 @@ echo "============================================================"
 echo "Enter your wallet address"
 echo "============================================================"
 read ADDRESS
-echo export ADDRESS=${ADDRESS} >> $HOME/.bash_profile
-echo export BUNDLR_PORT=${PORT} >> $HOME/.bash_profile
-source $HOME/.bash_profile
+echo export ADDRESS=${ADDRESS} >> $HOME/.profile
+echo export BUNDLR_PORT=${PORT} >> $HOME/.profile
+source $HOME/.profile
 
 sudo tee <<EOF >/dev/null $HOME/bundlr/validator-rust/.env
 PORT=${BUNDLR_PORT}

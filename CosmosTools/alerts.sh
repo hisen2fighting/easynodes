@@ -20,7 +20,7 @@ source $LOG_FILE
 echo 'LAST_BLOCK="'"$LATEST_BLOCK"'"' > $LOG_FILE
 echo 'LAST_POWER="'"$VOTING_POWER"'"' >> $LOG_FILE
 
-source $HOME/.bash_profile
+source $HOME/.profile
 curl -s "$NODE_RPC/status"> /dev/null
 if [[ $? -ne 0 ]]; then
     MSG="Warning! Node $MONIKER from $NETWORK is stopped!"

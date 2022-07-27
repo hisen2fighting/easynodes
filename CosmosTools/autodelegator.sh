@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $HOME/.bash_profile
+source $HOME/.profile
 GREEN_COLOR='\033[0;32m'
 RED_COLOR='\033[0;31m'
 WITHOU_COLOR='\033[0m'

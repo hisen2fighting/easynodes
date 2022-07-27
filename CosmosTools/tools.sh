@@ -4,7 +4,7 @@ while true
 do
 
 # Logo
-source ~/.bash_profile
+source ~/.profile
 
 echo "============================================================"
 curl -s https://raw.githubusercontent.com/ericet/easynodes/master/logo.sh | bash
@@ -25,42 +25,42 @@ echo "============================================================"
 echo "项目服务名 比如: seid, teritorid"
 echo "============================================================"
 read PROJECT
-echo export PROJECT=${PROJECT} >> $HOME/.bash_profile
+echo export PROJECT=${PROJECT} >> $HOME/.profile
 echo "============================================================"
 echo "设置链ID 比如: atlantic-1, teritori-testnet-v2"
 echo "============================================================"
 read CHAIN_ID
-echo export CHAIN_ID=${CHAIN_ID} >> $HOME/.bash_profile
+echo export CHAIN_ID=${CHAIN_ID} >> $HOME/.profile
 echo "============================================================"
 echo "代币的单位 比如: usei, utori"
 echo "============================================================"
 read DENOM
-echo export DENOM=${DENOM} >> $HOME/.bash_profile
+echo export DENOM=${DENOM} >> $HOME/.profile
 echo "============================================================"
 echo "设置操作费"
 echo "============================================================"
 read FEES
-echo export FEES=${FEES} >> $HOME/.bash_profile
+echo export FEES=${FEES} >> $HOME/.profile
 echo "============================================================"
 echo "钱包名称"
 echo "============================================================"
 read WALLETNAME
-echo export WALLETNAME=${WALLETNAME} >> $HOME/.bash_profile
+echo export WALLETNAME=${WALLETNAME} >> $HOME/.profile
 echo "============================================================"
 echo "钱包密码"
 echo "============================================================"
 read PWDDD
-echo export PWDDD=${PWDDD} >> $HOME/.bash_profile
+echo export PWDDD=${PWDDD} >> $HOME/.profile
 echo "============================================================"
 echo "输入钱包密码"
 echo "============================================================"
 VAL_ADDR=$($PROJECT keys show $WALLETNAME --bech val -a)
-echo export VAL_ADDR=${VAL_ADDR} >> $HOME/.bash_profile
+echo export VAL_ADDR=${VAL_ADDR} >> $HOME/.profile
 echo "============================================================"
 echo "输入钱包密码设置质押验证人的地址"
 echo "============================================================"
 DEL_ADDR=$($PROJECT keys show $WALLETNAME --bech acc -a)
-echo export DEL_ADDR=${DEL_ADDR} >> $HOME/.bash_profile
+echo export DEL_ADDR=${DEL_ADDR} >> $HOME/.profile
 
 break
 ;;
@@ -81,9 +81,9 @@ echo "============================================================"
 echo "设置自动复利间隔时间(秒) 比如： 1800 (代表每30分钟自动复利)"
 echo "============================================================"
 read DELAY
-echo export DELAY=${DELAY} >> $HOME/.bash_profile
+echo export DELAY=${DELAY} >> $HOME/.profile
 
-source $HOME/.bash_profile
+source $HOME/.profile
 
 
 mkdir $HOME/autodelegate
@@ -134,13 +134,13 @@ echo "============================================================"
 echo "输入电报API Token"
 echo "============================================================"
 read TG_API
-echo export TG_API=${TG_API} >> $HOME/.bash_profile
+echo export TG_API=${TG_API} >> $HOME/.profile
 echo "============================================================"
 echo "输入电报Chat ID"
 echo "============================================================"
 read TG_ID
-echo export TG_ID=${TG_ID} >> $HOME/.bash_profile
-source $HOME/.bash_profile
+echo export TG_ID=${TG_ID} >> $HOME/.profile
+source $HOME/.profile
 
 mkdir $HOME/alerts
 wget -O $HOME/alerts/alerts.sh https://raw.githubusercontent.com/ericet/easynodes/master/CosmosTools/alerts.sh

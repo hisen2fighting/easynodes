@@ -9,7 +9,7 @@ echo "============================================================"
 curl -s https://raw.githubusercontent.com/ericet/easynodes/master/logo.sh | bash
 echo "============================================================"
 
-source ~/.bash_profile
+source ~/.profile
 
 PS3='选择一个操作 '
 options=(
@@ -49,8 +49,8 @@ wget https://golang.org/dl/go1.18.1.linux-amd64.tar.gz; \
 rm -rv /usr/local/go; \
 tar -C /usr/local -xzf go1.18.1.linux-amd64.tar.gz && \
 rm -v go1.18.1.linux-amd64.tar.gz && \
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile && \
-source ~/.bash_profile && \
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.profile && \
+source ~/.profile && \
 go version > /dev/null
 
 echo "============================================================"
@@ -66,7 +66,7 @@ echo "============================================================"
                 
 read TERITRINODE
 TERITRINODE=$TERITRINODE
-echo 'export TERITRINODE='${TERITRINODE} >> $HOME/.bash_profile
+echo 'export TERITRINODE='${TERITRINODE} >> $HOME/.profile
 
 echo "============================================================"
 echo "输入钱包名称:"
@@ -74,10 +74,10 @@ echo "============================================================"
                
 read TERITORIWALLET
 TERITORIWALLET=$TERITORIWALLET
-echo 'export TERITORIWALLET='${TERITORIWALLET} >> $HOME/.bash_profile
+echo 'export TERITORIWALLET='${TERITORIWALLET} >> $HOME/.profile
 TERITORICHAIN=""teritori-testnet-v2""
-echo 'export TERITORICHAIN='${TERITORICHAIN} >> $HOME/.bash_profile
-source $HOME/.bash_profile
+echo 'export TERITORICHAIN='${TERITORICHAIN} >> $HOME/.profile
+source $HOME/.profile
 
 echo "============================================================"
 echo "节点安装开始。。。"
@@ -161,9 +161,9 @@ echo "============================================================"
 teritorid keys add $TERITORIWALLET
 TERITORIADDRWALL=$(teritorid keys show $TERITORIWALLET -a)
 TERITORIVAL=$(teritorid keys show $TERITORIWALLET --bech val -a)
-echo 'export TERITORIVAL='${TERITORIVAL} >> $HOME/.bash_profile
-echo 'export TERITORIADDRWALL='${TERITORIADDRWALL} >> $HOME/.bash_profile
-source $HOME/.bash_profile
+echo 'export TERITORIVAL='${TERITORIVAL} >> $HOME/.profile
+echo 'export TERITORIADDRWALL='${TERITORIADDRWALL} >> $HOME/.profile
+source $HOME/.profile
 
 echo "============================================================"
 echo "钱包地址: $TERITORIADDRWALL"
