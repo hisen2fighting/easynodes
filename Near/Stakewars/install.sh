@@ -225,7 +225,7 @@ cargo build --target wasm32-unknown-unknown --release
 
 NEAR_ENV=shardnet near deploy $NAME --wasmFile target/wasm32-unknown-unknown/release/contract.wasm
 echo "============================================================"
-echo "输入要分享奖励的钱包（如果不知道，就填我的钱包: ericet.shardnet.near）"
+echo "输入要分享奖励的钱包（如果不知道，就填我的钱包: tutorial.shardnet.near）"
 echo "============================================================"
 read receiver
 NEAR_ENV=shardnet near call $NAME new "{\"staking_pool_account_id\": \"$POOLNAME.factory.shardnet.near\", \"owner_id\":\"$NAME\", \"reward_receivers\": [[\"${receiver}\", {\"numerator\": 50, \"denominator\":100}], [\"$NAME\", {\"numerator\": 50, \"denominator\":100}]]}" --accountId $NAME
