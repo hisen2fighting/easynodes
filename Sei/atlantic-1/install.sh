@@ -10,7 +10,7 @@ curl -s https://raw.githubusercontent.com/ericet/easynodes/master/logo.sh | bash
 echo "============================================================"
 
 
-source ~/.bash_profile
+source ~/.profile
 
 PS3='选择一个操作 '
 options=(
@@ -50,8 +50,8 @@ wget https://golang.org/dl/go1.18.1.linux-amd64.tar.gz; \
 rm -rv /usr/local/go; \
 tar -C /usr/local -xzf go1.18.1.linux-amd64.tar.gz && \
 rm -v go1.18.1.linux-amd64.tar.gz && \
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile && \
-source ~/.bash_profile && \
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.profile && \
+source ~/.profile && \
 go version > /dev/null
 
 echo "============================================================"
@@ -67,7 +67,7 @@ echo "============================================================"
                 
 read SEINODE
 SEINODE=$SEINODE
-echo 'export SEINODE='${SEINODE} >> $HOME/.bash_profile
+echo 'export SEINODE='${SEINODE} >> $HOME/.profile
 
 echo "============================================================"
 echo "输入钱包名称:"
@@ -75,10 +75,10 @@ echo "============================================================"
                
 read SEIWALLET
 SEIWALLET=$SEIWALLET
-echo 'export SEIWALLET='${SEIWALLET} >> $HOME/.bash_profile
+echo 'export SEIWALLET='${SEIWALLET} >> $HOME/.profile
 SEICHAIN=""atlantic-1""
-echo 'export SEICHAIN='${SEICHAIN} >> $HOME/.bash_profile
-source $HOME/.bash_profile
+echo 'export SEICHAIN='${SEICHAIN} >> $HOME/.profile
+source $HOME/.profile
 
 echo "============================================================"
 echo "节点安装开始。。。"
@@ -162,9 +162,9 @@ echo "============================================================"
 seid keys add $SEIWALLET
 SEIADDRWALL=$(seid keys show $SEIWALLET -a)
 SEIVAL=$(seid keys show $SEIWALLET --bech val -a)
-echo 'export SEIVAL='${SEIVAL} >> $HOME/.bash_profile
-echo 'export SEIADDRWALL='${SEIADDRWALL} >> $HOME/.bash_profile
-source $HOME/.bash_profile
+echo 'export SEIVAL='${SEIVAL} >> $HOME/.profile
+echo 'export SEIADDRWALL='${SEIADDRWALL} >> $HOME/.profile
+source $HOME/.profile
 
 echo "============================================================"
 echo "钱包地址: $SEIADDRWALL"
