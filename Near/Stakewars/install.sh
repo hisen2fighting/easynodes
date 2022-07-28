@@ -53,6 +53,7 @@ break
 ;;
 
 "安装节点")
+cd $HOME
 git clone https://github.com/near/nearcore
 cd nearcore
 git fetch
