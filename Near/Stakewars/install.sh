@@ -19,6 +19,7 @@ options=(
 "查看节点日志"
 "设置瓜分质押奖励"
 "领取质押奖励"
+"升级节点"
 "退出")
 select opt in "${options[@]}"
                do
@@ -236,6 +237,22 @@ break
 source ~/.profile
 CONTRACT_ID=$NAME
 NEAR_ENV=shardnet near call $CONTRACT_ID withdraw '{}' --accountId $CONTRACT_ID --gas 200000000000000
+break
+;;
+
+"升级节点")
+sudo systemctl stop neard
+rm ~/.near/data/*
+cd ~/nearcore
+git fetch
+git checkout c1b047b8187accbf6bd16539feb7bb60185bdc38
+cargo build -p neard --release --features shardnet
+cd ~/.near
+rm genesis.json
+wget https://s3-us-west-1.amazonaws.com/build.nearprotocol.com/nearcore-deploy/shardnet/genesis.json
+rm ~/.near/config.json
+wget -O ~/.near/config.json https://s3-us-west-1.amazonaws.com/build.nearprotocol.com/nearcore-deploy/shardnet/config.json
+sudo systemctl start neard && journalctl -n 100 -f -u neard | ccze -A
 break
 ;;
 
