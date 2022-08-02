@@ -178,7 +178,7 @@ echo "节点状态 = $(curl -s localhost:26657/status)"
 echo "============================================================"
                
 rebusd tx staking create-validator \
-  --amount 100000000000000000000arebus\
+  --amount 1000000000000000000arebus\
   --from $REBUSWALLET \
   --commission-max-change-rate "0.05" \
   --commission-max-rate "0.20" \
