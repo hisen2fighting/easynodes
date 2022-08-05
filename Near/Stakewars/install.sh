@@ -245,7 +245,7 @@ sudo systemctl stop neard
 rm ~/.near/data/*
 cd ~/nearcore
 git fetch
-git checkout c1b047b8187accbf6bd16539feb7bb60185bdc38
+git checkout 78ef2f55857d6118047efccf070ae0f7ddb232ea
 cargo build -p neard --release --features shardnet
 cd ~/.near
 rm genesis.json
