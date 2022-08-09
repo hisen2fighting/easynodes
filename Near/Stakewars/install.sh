@@ -193,7 +193,7 @@ echo '#!/bin/bash
 source ~/.profile
 echo "---" >> /home/$NAME/logs/all.log
 date >> /home/$NAME/logs/all.log
-near call '$POOLNAME'.factory.shardnet.near ping '{}' --accountId '$NAME' --gas=300000000000000 >> /home/$NAME/logs/all.log
+near call '$POOLNAME'.factory.shardnet.near ping '{}' --accountId '$NAME' --gas=30000000000000 >> /home/$NAME/logs/all.log
 near proposals | grep '$POOLNAME' >> /home/$NAME/logs/all.log
 near validators current | grep '$POOLNAME' >> /home/$NAME/logs/all.log
 near validators next | grep '$POOLNAME' >> /home/$NAME/logs/all.log' > /home/$NAME/scripts/ping.sh
