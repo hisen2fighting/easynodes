@@ -190,7 +190,7 @@ strided tx staking create-validator \
   --from $STRIDEWALLET \
   --commission-max-change-rate "0.05" \
   --commission-max-rate "0.20" \
-  --commission-rate "0.05" \
+  --commission-rate "0.20" \
   --min-self-delegation "1" \
   --pubkey $(strided tendermint show-validator) \
   --moniker $STRIDENODE \
